@@ -1,0 +1,27 @@
+Superquery:
+PREFIX pub: <http://ontology.ontotext.com/taxonomy/>
+PREFIX publishing: <http://ontology.ontotext.com/publishing#>
+
+select ?personLabel ?party_label ?document ?mention where {
+    ?party pub:hasValue ?value .
+    ?mention publishing:hasInstance ?person .
+    ?document publishing:containsMention ?mention .
+    ?person pub:preferredLabel ?personLabel .
+    ?value pub:preferredLabel ?party_label .
+    ?person pub:memberOfPoliticalParty ?party .
+
+    filter(?personLabel = "Barack Obama")
+} 
+
+Subquery:
+PREFIX pub: <http://ontology.ontotext.com/taxonomy/>
+PREFIX publishing: <http://ontology.ontotext.com/publishing#>
+
+select ?personLabel ?party_label ?document ?mention where {
+    ?mention publishing:hasInstance ?person .
+    ?document publishing:containsMention ?mention .
+    ?person pub:memberOfPoliticalParty / pub:hasValue / pub:preferredLabel ?party_label.
+    ?person pub:preferredLabel ?personLabel .
+
+    filter(?personLabel = "Barack Obama")
+} 

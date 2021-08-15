@@ -1,0 +1,17 @@
+Superquery:
+PREFIX foaf:   <http://xmlns.com/foaf/0.1/>
+
+select ?x ?y where {
+    ?y foaf:knows ?gen1
+    FILTER(?x != ?y)
+    ?x foaf:knows ?gen1
+
+}
+
+Subquery:
+PREFIX foaf:   <http://xmlns.com/foaf/0.1/>
+
+select ?x ?y where {
+    ?x foaf:knows / ^foaf:knows ?y
+    FILTER(?x != ?y)
+}

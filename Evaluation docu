@@ -1,0 +1,54 @@
+1. Download the tar ball from www.math.rs/∼mirko/SpeCS.tar.gz # File is not available anymore on this address but we saved the file on our github page
+2. Extract SpeCS.tar.gz
+3. Make with "make -f Makefile"
+4. Prepare test files
+We took the test queries from https://github.com/GreenfishK/DataCitation/tree/master/tests/normalization/test_data
+Eeach test takes two files as an input, labeled as "alt1" and "alt2" in our test directory. 
+We put each query pair (or each two files) from these test files in one file and annotated one query with "superquery" and one with "subquery". Example:
+Superquery:
+Select * {?s ?p ?o}
+
+Subquery:
+Select ?s {?s ?p ?o}
+We did not take all test cases but only the ones according to our test table.
+
+5. Modifications on queries
+Compared to the queries in rdf_data_citation/tests/normalization
+* The "where" keyword is not left out but included in every test query
+* The language suffix @en is removed because it cannot be interpreted by this solver, meaning that the solver is not fully SPARQL 1.1 compliant.
+
+6. Run tests by executing following commands
+./specs -file test_queries/0_simple_test_query.txt
+./specs -file test_queries/1_optional_where_clause.txt
+./specs -file test_queries/2_rdf_type_predicate.txt
+./specs -file test_queries/3_asterisk.txt
+./specs -file test_queries/4_leave_out_subject_in_triple_statements.txt
+./specs -file test_queries/5_order_of_triple_statements.txt
+./specs -file test_queries/6_alias_via_bind.txt
+./specs -file test_queries/7_variable_names.txt
+./specs -file test_queries/8_variables_not_bound.txt
+./specs -file test_queries/9_inverted_paths.txt
+./specs -file test_queries/10_sequence_paths2.txt
+./specs -file test_queries/11_prefix_alias.txt
+
+7. Test results
+
+Testcase;Output;Comment
+0_simple_test_query;sat;Queries are identical
+1_optional_where_clause;Lexical error: unknown character '@'; Cannot interprete language suffix @en in expression "filter(?personLabel = "Barack Obama"@en)". Even after removing @en we get the message that a syntax error occured as the "where" keyword is not optional with this solver.
+2_rdf_type_predicate;sat;
+3_asterisk;unsat;
+4_leave_out_subject_in_triple_statements;unsat;
+5_order_of_triple_statements;unsat;
+6_alias_via_bind;unsat;
+7_variable_names;unsat;
+8_variables_not_bound;syntax error in test_queries/8_variables_not_bound.txt;No further description about the syntax error provided. Either query is executable against GraphDB.
+9_inverted_paths;syntax error in test_queries/9_inverted_paths.txt;No further description about the syntax error provided. Either query is executable against GraphDB.
+10_sequence_paths2;syntax error in test_queries/10_sequence_paths2.txt;No further description about the syntax error provided. Either query is executable against GraphDB
+11_prefix_alias;unsat;The solver returns unsat even if these two queries are identical.
+
+
+
+
+
+
