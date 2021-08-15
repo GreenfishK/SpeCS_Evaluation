@@ -1,11 +1,12 @@
 # Tests can be run by executing following commands
-%./specs -file test_queries/1_optional_where_clause.txt
-%./specs -file test_queries/2_rdf_type_predicate.txt
-%./specs -file test_queries/4_leave_out_subject_in_triple_statements.txt
-%./specs -file test_queries/5_order_of_triple_statements.txt
-%./specs -file test_queries/6_alias_via_bind.txt
-%./specs -file test_queries/7_variable_names.txt
-%./specs -file test_queries/8_variables_not_bound.txt
-%./specs -file test_queries/9_inverted_paths.txt
-%./specs -file test_queries/10_sequence_paths2.txt
-%./specs -file test_queries/11_prefix_alias.txt
+./specs -file test_queries/1_optional_where_clause.txt
+./specs -file test_queries/2_rdf_type_predicate_1.txt
+./specs -file test_queries/2_rdf_type_predicate_2.txt
+./specs -file test_queries/4_leave_out_subject_in_triple_statements.txt
+./specs -file test_queries/5_order_of_triple_statements.txt
+./specs -file test_queries/6_alias_via_bind.txt
+./specs -file test_queries/7_variable_names.txt
+./specs -file test_queries/8_variables_not_bound.txt
+./specs -file test_queries/9_inverted_paths.txt
+./specs -file test_queries/10_sequence_paths2.txt
+./specs -file test_queries/11_prefix_alias.txt

@@ -2,9 +2,9 @@ Superquery:
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 select ?s ?o where {
 	?s rdf:type ?o .
-}
+} order by ?s
 
 Subquery:
 select ?s ?o where {
 	?s a ?o .
-}
+} order by ?s
